@@ -1,0 +1,10 @@
+<mat-card *ngFor="let code of zipCodes" class="card">
+    <mat-card-header>
+        <mat-card-title>{{ code.country }} | {{ code.countryAbbreviation }}</mat-card-title>
+        <mat-card-subtitle>{{ code.postCode }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="card__content">
+        <h3>Places</h3>
+        <app-place [places]="code.places"></app-place>
+    </mat-card-content>
+</mat-card>

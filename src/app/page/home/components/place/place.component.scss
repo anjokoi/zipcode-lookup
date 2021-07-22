@@ -1,0 +1,17 @@
+.place {
+    border: 1px solid gainsboro;
+    padding: 0.5em;
+    &__content {
+        display: flex;
+        margin-bottom: 1em;
+        border-bottom: 1px solid gainsboro;
+        padding: 0.25em;
+        &__title {
+            flex: 1;
+            font-weight: bold;
+        }
+        &__value {
+            flex: 1;
+        }
+    }
+}

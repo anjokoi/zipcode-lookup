@@ -1,14 +1,13 @@
-import { ZipCode } from './shared/types';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { forkJoin } from 'rxjs';
+
+import { ZipCode } from 'app/shared/types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ZipService {
-
   /**
    * Http Client
    */
@@ -24,7 +23,7 @@ export class ZipService {
   }
 
   /**
-   * Get Zip Code
+   * Get Zip Code by US
    * 
    * @param contry 
    * @returns 

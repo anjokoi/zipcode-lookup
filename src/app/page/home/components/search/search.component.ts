@@ -5,9 +5,11 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { FormControl, Validators } from '@angular/forms';
 import { combineLatest, Observable, of, Subscription, throwError } from 'rxjs';
 
-import { ZipService } from 'app/zip.service';
+import { ZipService } from 'app/shared/services/zip.service';
+
+import { Place, ZipCode } from 'app/shared/types';
+
 import { ZIP_CODE_PATTERN } from 'app/app.constant';
-import { Place, ZipCode } from './../shared/types';
 
 @Component({
   selector: 'app-search',

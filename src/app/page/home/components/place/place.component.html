@@ -1,0 +1,22 @@
+<div *ngFor="let place of places" class="place">
+    <div class="place__content">
+        <span class="place__content__title">Latitude</span>
+        <span class="place__content__value">{{ place.latitude }}</span>
+    </div>
+    <div class="place__content">
+        <span class="place__content__title">Longitude</span>
+        <span class="place__content__value">{{ place.longitude }}</span>
+    </div>
+    <div class="place__content">
+        <span class="place__content__title">Name</span>
+        <span class="place__content__value">{{ place.placeName }}</span>
+    </div>
+    <div class="place__content">
+        <span class="place__content__title">State</span>
+        <span class="place__content__value">{{ place.state }}</span>
+    </div>
+    <div class="place__content">
+        <span class="place__content__title">Abbreviation</span>
+        <span class="place__content__value">{{ place.stateAbbreviation }}</span>
+    </div>
+</div>

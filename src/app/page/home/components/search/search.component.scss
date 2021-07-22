@@ -11,18 +11,16 @@
     h1 {
         color: white;
         font-size: 3.5em;
+        margin-top: 2.5em;
     }
     h2 {
         color: white;
         font-size: 1.25em;
     }
-    // &:focus {
-    //     background-color: red !important;
-    // }
     &__field {
         width: 35%;
         margin: 0 auto;
-        margin-top: 3em;
+        margin-top: 1.5em;
         margin-bottom: 1em;
         display: block;
         &:focus {
@@ -35,7 +33,7 @@
     }
     button {
         margin: 1em;
-        margin-bottom: 2em;
+        margin-bottom: 1em;
         width: 15em;
     }
     &__result {
@@ -47,10 +45,6 @@
         padding: 1em 0;
         background-color: white;
         min-height: 525px;
-        &--card {
-            width: 250px;
-            margin: 2em;
-        }
         &__loading {
             margin-top: 10em;
         }
