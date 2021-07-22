@@ -48,5 +48,14 @@
         &__loading {
             margin-top: 10em;
         }
+        &__cards {
+            background-color: white;
+            display: flex;
+            flex-flow: wrap;
+            justify-content: space-around;
+            padding: 1em 0;
+            background-color: white;
+            min-height: 525px;
+        }
     }
 }

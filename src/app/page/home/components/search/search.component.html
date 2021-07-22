@@ -25,7 +25,7 @@
         <mat-spinner *ngIf="searching" [diameter]="25" class="search__result__loading"></mat-spinner>
 
         <div *ngIf="!searching">
-            <app-zip-code [zipCodes]="zipCodes"></app-zip-code>
+            <app-zip-code [zipCodes]="zipCodes" class="search__result__cards"></app-zip-code>
         </div>
     </div>
 </div>
