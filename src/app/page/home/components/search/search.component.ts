@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { FormControl, Validators } from '@angular/forms';
-import { combineLatest, Observable, of, Subscription, throwError } from 'rxjs';
+import { combineLatest, EMPTY, Observable, of, onErrorResumeNext, Subscription, throwError } from 'rxjs';
 
 import { ZipService } from 'app/shared/services/zip.service';
 
 import { Place, ZipCode } from 'app/shared/types';
 
 import { ZIP_CODE_PATTERN } from 'app/app.constant';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-search',
@@ -69,13 +70,21 @@ export class SearchComponent implements OnInit {
     // Store subscriptions to subscriptions attribute to unsubscribe later
     this.subscriptions.push(
       this.observableCollections
-        .pipe(switchMap(_ => combineLatest(_)), catchError((error: any) => {
-          console.log(error);
-
-          return throwError(error);
-        }))
+        .pipe(mergeMap((v) => combineLatest(v)), catchError((err) => {
+            // console.error(err);
+            // err.onErrorResumeNext();
+            return of(err);
+          })
+        )
         .subscribe((response) => {
+          console.log(response, 'response');
+          
           this.searching = false;
+
+          if (response instanceof HttpErrorResponse) {
+            return;
+          }
+
           this.zipCodes = response.map((r: any) => ({
               country: r.country,
               postCode: r["post code"],
