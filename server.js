@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
 const DIST_DIR = './dist/tulgy-zip';
@@ -13,6 +14,8 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.static(DIST_DIR));
+
+app.use(cors())
 
 app.get('/*', function(req, res) {
     res.sendFile('index.html', { root: `${DIST_DIR}/` });
