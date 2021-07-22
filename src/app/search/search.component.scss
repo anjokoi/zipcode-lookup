@@ -1,0 +1,58 @@
+.search {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-image: url('../../assets/bg-2.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: inherit;
+    background-color: #fff;
+    flex-direction: column;
+    h1 {
+        color: white;
+        font-size: 3.5em;
+    }
+    h2 {
+        color: white;
+        font-size: 1.25em;
+    }
+    // &:focus {
+    //     background-color: red !important;
+    // }
+    &__field {
+        width: 35%;
+        margin: 0 auto;
+        margin-top: 3em;
+        margin-bottom: 1em;
+        display: block;
+        &:focus {
+            background-color: red !important;
+        }
+        .mat-form-field-wrapper {
+            border-radius: 2em;
+            background-color: red !important;
+        }
+    }
+    button {
+        margin: 1em;
+        margin-bottom: 2em;
+        width: 15em;
+    }
+    &__result {
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-around;
+        padding: 1em 0;
+        background-color: white;
+        min-height: 525px;
+        &--card {
+            width: 250px;
+            margin: 2em;
+        }
+        &__loading {
+            margin-top: 10em;
+        }
+    }
+}
