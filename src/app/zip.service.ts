@@ -17,7 +17,7 @@ export class ZipService {
   /**
    * Base URL
    */
-  url: string = 'http://api.zippopotam.us';
+  url: string = 'https://api.zippopotam.us';
 
   constructor(http: HttpClient) {
     this.http = http;
