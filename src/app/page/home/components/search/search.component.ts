@@ -70,22 +70,15 @@ export class SearchComponent implements OnInit {
     // Store subscriptions to subscriptions attribute to unsubscribe later
     this.subscriptions.push(
       this.observableCollections
-        .pipe(mergeMap((v) => combineLatest(v)), catchError((err) => {
-            // console.error(err);
-            // err.onErrorResumeNext();
-            return of(err);
-          })
-        )
+        .pipe(mergeMap((v) => combineLatest(v)))
         .subscribe((response) => {
-          console.log(response, 'response');
-          
           this.searching = false;
 
-          if (response instanceof HttpErrorResponse) {
+          if (response instanceof HttpErrorResponse || !Array.isArray(response)) {
             return;
           }
 
-          this.zipCodes = response.map((r: any) => ({
+          this.zipCodes = response.filter(r => !!r).map((r: any) => ({
               country: r.country,
               postCode: r["post code"],
               countryAbbreviation: r["country abbreviation"],
