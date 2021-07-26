@@ -4,13 +4,13 @@
 
     <mat-form-field class="search__field">
         <mat-label>Zip Code</mat-label>
-        <mat-chip-list #chipList aria-label="Zip Code" style="width: 100%; background-color: white;">
-            <mat-chip *ngFor="let c of zipCode" [selectable]="selectable" [removable]="removable" (removed)="remove(c)">
+        <mat-chip-list #chipList aria-label="Zip Code" style="width: 100%;">
+            <mat-chip [class.error]="checkIsZipCodeInValid(c)" *ngFor="let c of zipCode; let i = index" [selectable]="selectable" [removable]="removable" (removed)="remove(c)">
                 {{c}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                <mat-icon [style.color]="checkIsZipCodeInValid(c) ? 'red' : 'gray'" matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
 
-            <input [formControl]="zipCodeFormControl" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+            <input [formControl]="zipCodeFormControl" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (paste)="paste($event)" (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
     </mat-form-field>
 
@@ -21,7 +21,7 @@
     <hr>
 
     <div class="search__result">
-        <p *ngIf="dontHaveResults" style="text-align: center; padding: 2em; width: 100%;">No Result.</p>
+        <p *ngIf="dontHaveResults && !searching" style="text-align: center; padding: 2em; width: 100%;">No Result.</p>
         <mat-spinner *ngIf="searching" [diameter]="25" class="search__result__loading"></mat-spinner>
 
         <div *ngIf="!searching">
