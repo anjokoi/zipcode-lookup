@@ -63,34 +63,33 @@ export class SearchComponent implements OnInit {
 
     // flag to disable button when searching
     this.searching = true;
-    setTimeout(() => {
-      // Collect all zip code subscriptions
-      this.observableCollections = of(this.zipCode.map(c => this.zipService.getZipCode(c)));
 
-      // Store subscriptions to subscriptions attribute to unsubscribe later
-      this.subscriptions.push(
-        this.observableCollections
-          .pipe(mergeMap((v) => combineLatest(v)))
-          .subscribe((response) => {
-            this.searching = false;
+    // Collect all zip code subscriptions
+    this.observableCollections = of(this.zipCode.map(c => this.zipService.getZipCode(c)));
 
-            if (response instanceof HttpErrorResponse || !Array.isArray(response)) {
-              return;
-            }
+    // Store subscriptions to subscriptions attribute to unsubscribe later
+    this.subscriptions.push(
+      this.observableCollections
+        .pipe(mergeMap((v) => combineLatest(v)))
+        .subscribe((response) => {
+          this.searching = false;
 
-            this.zipCodes = response.filter(r => !!r).map((r: any) => ({
-                country: r.country,
-                postCode: r["post code"],
-                countryAbbreviation: r["country abbreviation"],
-                places: r.places.map((p: any) => ({ placeName: p["place name"], longitude: p.longitude, latitude: p.latitude, state: p.state, stateAbbreviation: p["state abbreviation"] }) as Place)
-              } as ZipCode))
-              .sort((a: ZipCode, b: ZipCode) => a.postCode.localeCompare(b.postCode));
-          }, error => {
-            console.error(error);
-            this.searching = false;
-          })
-      );
-    }, 3000); 
+          if (response instanceof HttpErrorResponse || !Array.isArray(response)) {
+            return;
+          }
+
+          this.zipCodes = response.filter(r => !!r).map((r: any) => ({
+              country: r.country,
+              postCode: r["post code"],
+              countryAbbreviation: r["country abbreviation"],
+              places: r.places.map((p: any) => ({ placeName: p["place name"], longitude: p.longitude, latitude: p.latitude, state: p.state, stateAbbreviation: p["state abbreviation"] }) as Place)
+            } as ZipCode))
+            .sort((a: ZipCode, b: ZipCode) => a.postCode.localeCompare(b.postCode));
+        }, error => {
+          console.error(error);
+          this.searching = false;
+        })
+    );
   }
 
   add(event: MatChipInputEvent): void {

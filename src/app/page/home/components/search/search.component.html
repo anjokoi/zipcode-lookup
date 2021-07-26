@@ -16,7 +16,7 @@
 
     <mat-error *ngIf="zipCodeFormControl.invalid">Invalid zip code!</mat-error>
 
-    <button mat-raised-button [disabled]="searching" color="primary" (click)="search()">Search</button>
+    <button mat-raised-button [disabled]="searching || zipCodeFormControl.invalid" color="primary" (click)="search()">Search</button>
 
     <hr>
 
